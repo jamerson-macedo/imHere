@@ -1,6 +1,7 @@
 import { Text, View, TextInput, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
 import * as React from "react";
+import { Participant } from "../../components/Participant";
 export default function Home() {
   function handlerParticipantAdd() {
     console.log("voce clicou");
@@ -19,6 +20,9 @@ export default function Home() {
           <Text style={styles.buttonText}> + </Text>
         </TouchableOpacity>
       </View>
+      <Participant />
+      <Participant />
+      <Participant />
     </View>
   );
 }
