@@ -4,30 +4,38 @@ import {
   TextInput,
   TouchableOpacity,
   FlatList,
+  Alert,
 } from "react-native";
 import { styles } from "./styles";
 import * as React from "react";
 import { Participant } from "../../components/Participant";
 export default function Home() {
-  const participants = [
-    "jamerson",
-    "maria",
-    "jase",
-    "mariah",
-    "jamersone",
-    "mariaa",
-    "jamersonh",
-    "mariar",
-    "jamersony",
-    "marian",
-    "karanan",
-    " kjfwekfm",
-  ];
+
+  const participants = ["jamerson"];
   function handlerParticipantAdd() {
-    console.log("voce clicou");
+    // includes verifica se existe
+    if (participants.includes("rodrigo")) {
+      return Alert.alert(
+        "Participante existe",
+        "já existe um participante nessa lista com esse nome"
+      );
+    }
+    // SE ELE NÃO EXISTE 
+    participants.push('ana');
+    console.log(participants)
+
   }
   function handlerParticipantRemove(name: string) {
-    console.log(`voce clicou em ${name}`);
+    Alert.alert("Remover", `Remover o participante ${name}?`, [
+      {
+        text: "Sim",
+        onPress: () => Alert.alert("Deletado !"),
+      },
+      {
+        text: "Não",
+        style: "cancel",
+      },
+    ]);
   }
   return (
     <View style={styles.container}>
@@ -46,16 +54,19 @@ export default function Home() {
 
       <FlatList
         ListEmptyComponent={() => (
-          <Text style={styles.listEmpty}>Ninguem chegou no evento ainda ? Adicione um participante na sua lista</Text>
+          <Text style={styles.listEmpty}>
+            Ninguem chegou no evento ainda ? Adicione um participante na sua
+            lista
+          </Text>
         )}
         showsVerticalScrollIndicator={false}
-        data={[]}
+        data={participants}
         keyExtractor={(item) => item}
         renderItem={({ item }) => (
           <Participant
             key={item}
             name={item}
-            onRemove={() => handlerParticipantRemove("jamerson ")}
+            onRemove={() => handlerParticipantRemove(item)}
           />
         )}
       />
