@@ -37,7 +37,8 @@ export default function Home() {
     Alert.alert("Remover", `Remover o participante ${name}?`, [
       {
         text: "Sim",
-        onPress: () => Alert.alert("Deletado !"),
+        // modifica a lista e me retorna o valor menos o que cliquei
+        onPress: () => setParticipants(prevstate=>prevstate.filter(participants=>participants!==name)),
       },
       {
         text: "Não",
