@@ -12,12 +12,15 @@ import { useState } from "react";
 import { Participant } from "../../components/Participant";
 export default function Home() {
   // para atualizar a lista precisa do usestate
-  const [participants,setParticipants]=useState(["jamerson"]);
+  // atualizando o estado da lsita
+  const [participants, setParticipants]=useState<String[]>([]);
+  const [participantsName, setParticipantName]=useState('');
+  
 
   //const participants = ["jamerson"];
   function handlerParticipantAdd() {
     // includes verifica se existe
-    if (participants.includes("rodrigo")) {
+    if (participants.includes(participantsName)) {
       return Alert.alert(
         "Participante existe",
         "já existe um participante nessa lista com esse nome"
@@ -25,8 +28,9 @@ export default function Home() {
     }
     // SE ELE NÃO EXISTE 
     // prevstate atualiza a lista com o anterior
-    setParticipants(prevState=>[...prevState,'ana']);
-    console.log(participants)
+    setParticipants(prevState=>[...prevState,participantsName]);
+    // apos adicionar eu limpo o campo
+    setParticipantName('');
 
   }
   function handlerParticipantRemove(name: string) {
@@ -49,6 +53,8 @@ export default function Home() {
           style={styles.input}
           placeholder="Nome do participante"
           placeholderTextColor={"#6b6b6b"}
+          onChangeText={text =>setParticipantName(text)}
+          value={participantsName}
         />
 
         <TouchableOpacity style={styles.button} onPress={handlerParticipantAdd}>
