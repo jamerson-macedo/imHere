@@ -8,10 +8,13 @@ import {
 } from "react-native";
 import { styles } from "./styles";
 import * as React from "react";
+import { useState } from "react";
 import { Participant } from "../../components/Participant";
 export default function Home() {
+  // para atualizar a lista precisa do usestate
+  const [participants,setParticipants]=useState(["jamerson"]);
 
-  const participants = ["jamerson"];
+  //const participants = ["jamerson"];
   function handlerParticipantAdd() {
     // includes verifica se existe
     if (participants.includes("rodrigo")) {
@@ -21,7 +24,8 @@ export default function Home() {
       );
     }
     // SE ELE NÃO EXISTE 
-    participants.push('ana');
+    // prevstate atualiza a lista com o anterior
+    setParticipants(prevState=>[...prevState,'ana']);
     console.log(participants)
 
   }
