@@ -33,6 +33,7 @@ export default function Home() {
     setParticipantName('');
 
   }
+  // estados sao assicronos entao no log aparece com delay mesmo adicionando
   function handlerParticipantRemove(name: string) {
     Alert.alert("Remover", `Remover o participante ${name}?`, [
       {
